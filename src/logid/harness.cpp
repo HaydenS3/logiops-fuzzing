@@ -1,5 +1,12 @@
 #include <stdio.h>
 #include <Configuration.h>
+#include <util/log.h>
+#include <libconfig.h++>
+
+using namespace logid;
+
+LogLevel logid::global_loglevel = INFO;
+libconfig::Config _config;
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +29,8 @@ int main(int argc, char *argv[])
     fprintf(outputFile, "%s", input);
 
     fclose(outputFile);
+
+    _config.readFile(output); // Fuzzing point
 
     return 0;
 }
