@@ -10,7 +10,14 @@ libconfig::Config _config;
 
 int main(int argc, char *argv[])
 {
-    _config.readFile("logid.cfg"); // Fuzzing point
+    // Read file name from command line
+    if (argc != 2)
+    {
+        printf("Usage: %s <config_file>\n", argv[0]);
+        return 1;
+    }
+
+    _config.readFile(argv[1]); // Fuzzing point
 
     return 0;
 }
