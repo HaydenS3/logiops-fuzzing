@@ -17,7 +17,14 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    _config.readFile(argv[1]); // Fuzzing point
+    try
+    {
+        _config.readFile(argv[1]); // Fuzzing point
+    }
+    catch (const libconfig::ParseException &e)
+    {
+        return 0; // Catching the exception and returning 0
+    }
 
     return 0;
 }
